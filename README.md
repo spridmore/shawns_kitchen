@@ -1,8 +1,10 @@
 `npm install --save jsonwebtoken`
 
-`var jwt = require('jsonwebtoken')`
+```javascript
+var jwt = require('jsonwebtoken')
+```
 
-jwt has two methods.
+# jwt has two methods.
 
   - jwt.sign()
     - takes 2 arguments:
@@ -35,29 +37,29 @@ function verify(req, res, next) {
 }
 ```
 
+# bcryptjs has 3 methods
+
 `npm install --save bcryptjs`
 
-- bcryptjs has 3 methods
-  - bcrypt.genSalt()
-  		- takes 2 arguments:
-      		- number of salt rounds
-      		- call back function
-  - bcrypt.hash()
-    	- takes 3 arguments:
-       	 - The password (or string) you wish to salt
-        	- The salt
-        	- call back function that gives you the hash
-  - bcrypt.compare()
-    	- takes 3 arguments:
-       	 - The password (or string) you wish to compare.
-        	- The hashed password (or string) you wish to compare it to.
-        	- call back function with either an error or result(bool).
-
-
-`var bcrypt = require('bcryptjs')`
-`var password = req.body.password`
+ - bcrypt.genSalt()
+  	- takes 2 arguments:
+      	- number of salt rounds
+      	- call back function
+ - bcrypt.hash()
+    - takes 3 arguments:
+       - The password (or string) you wish to salt
+       - The salt
+       - call back function that gives you the hash
+ - bcrypt.compare()
+    - takes 3 arguments:
+       - The password (or string) you wish to compare.
+       - The hashed password (or string) you wish to compare it to.
+       - call back function with either an error or result(bool).
 
 ```javascript
+var bcrypt = require('bcryptjs')
+var password = req.body.password
+
 bcrypt.genSalt(10, function(error, salt) {
   bcrypt.hash(password, salt, function(error, hash) {
   		// save the hash in our DB
@@ -68,6 +70,8 @@ bcrypt.compare(req.body.password, hashedPassword, function(error, result) {
 	// result will be a bool
 })
 ```
+
+# Postgres Install
 
 - Download Postgres app
 - Download Postico
