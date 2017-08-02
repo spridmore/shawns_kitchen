@@ -1,5 +1,5 @@
-`npm install --save jsonwebtoken
-var jwt = require('jsonwebtoken')`
+`npm install --save jsonwebtoken`
+`var jwt = require('jsonwebtoken')`
 
 jwt has two methods.
   jwt.sign
@@ -17,7 +17,7 @@ Once a user is created or a login event has successfully been done set the heade
 `res.header('x-auth', token).status(200).json(user)`
 
 Create custom middleware using jwt.verify to decode the custom header and set the req.token object
-`function verify(req, res, next) {
+```function verify(req, res, next) {
 	var token =  req.header('x-auth')
 	jwt.verify(token, process.env.JWT_SECRET, function (error, decoded) {
 		if (error) {
@@ -29,7 +29,7 @@ Create custom middleware using jwt.verify to decode the custom header and set th
 		}
 	});
 }
-`
+```
 
 `npm install --save bcryptjs`
 
@@ -50,10 +50,10 @@ bcryptjs has 3 methods
         - call back function with either an error or result(bool).
 
 
-`var bcrypt = require('bcryptjs')
-var password = req.body.password
+`var bcrypt = require('bcryptjs')`
+`var password = req.body.password`
 
-bcrypt.genSalt(10, function(error, salt) {
+```bcrypt.genSalt(10, function(error, salt) {
   bcrypt.hash(password, salt, function(error, hash) {
     // save the hash in our DB
     })
@@ -62,8 +62,8 @@ bcrypt.genSalt(10, function(error, salt) {
 var hashedPassword = //the hashed password
 bcrypt.compare(req.body.password, hashedPassword, function(error, result) {
 
-  })
-`
+})
+```
 
 Download Postgres app
 Download Postico
