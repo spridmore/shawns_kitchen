@@ -8,7 +8,7 @@ router.post('/login', authController.login);
 router.post('/register', authController.register);
 
 router.get('/', userController.index);
-router.get('/:id', userController.show);
+router.get('/:id', authController.verify, userController.show);
 router.put('/:id', userController.update);
 router.delete('/:id', userController.destroy);
 
