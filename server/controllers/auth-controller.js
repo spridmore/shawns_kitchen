@@ -55,6 +55,7 @@ function register (req, res) {
 	// 1. Validate email and password
 	var email = req.body.email
 	var password = req.body.password
+	var compare = req.body.comparePassword
 
 	if (!email || !password) {
 		res.json({ error: "Email and password must be set" })
@@ -95,9 +96,9 @@ function register (req, res) {
 
 								user.dataValues.token = token;
 								console.log("User before sent back: ", user);
-								res.header('Authorization', token).status(200).json(user)
+								res.status(200).json(user)
 							})
-							.catch(function (error){
+							.catch(function (error) {
 								res.status(500).json({error: error});
 							});
 					})
