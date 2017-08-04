@@ -11,7 +11,7 @@ function login (req, res) {
 		res.status(400).json({ error: "Email and password must be set" })
 	}
 	else {
-		// 2. Verify that user existss
+		// 2. Verify that user exists
 		User.findAll({
 			where: {
 				email: email
@@ -36,7 +36,7 @@ function login (req, res) {
 							else {
 								// 4. Return a token
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now() }, process.env.JWT_SECRET);
-								res.header('x-auth', token).json(user)
+								res.json(user)
 							}
 					});
 				}
@@ -85,7 +85,7 @@ function register (req, res) {
 						User.create(req.body)
 							.then(function (user) {
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now()}, process.env.JWT_SECRET);
-								res.header('x-auth', token).status(200).json(user)
+								res.status(200).json(user)
 							})
 							.catch(function (error){
 								res.status(500).json({error: error});
@@ -101,7 +101,7 @@ function register (req, res) {
 }
 
 function verify(req, res, next) {
-  var token =  req.header('x-auth')
+  var token =  req.header('Authorization')
 	jwt.verify(token, process.env.JWT_SECRET, function (error, decoded) {
 		if (error) {
 			res.json({error: error})
