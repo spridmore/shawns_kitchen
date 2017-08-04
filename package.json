@@ -5,6 +5,7 @@
     "start": "node ./server/bin/www"
   },
   "dependencies": {
+    "angular-local-storage": "^0.6.0",
     "axios": "^0.16.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "~1.15.1",

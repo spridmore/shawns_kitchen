@@ -15,8 +15,7 @@ gulp.task('styles', function() {
   console.log('');
 
   return gulp.src([
-      'public/src/css/styles.css',
-      'public/src/css/styles1.css'
+      'app/src/css/styles.css'
     ])
     .pipe(plumber(function(err) {
       console.log('');
@@ -32,7 +31,7 @@ gulp.task('styles', function() {
     .pipe(concat('styles.css'))
     .pipe(minifyCss())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/dist/css'))
+    .pipe(gulp.dest('app/dist/css'))
 })
 
 //Scripts
@@ -44,11 +43,14 @@ gulp.task('scripts', function () {
 
   // Modules -> Services -> Controllers -> Filters
   return gulp.src([
-      'public/src/app.js',
-      'public/src/js/ui-router.min.js',
-      'public/src/services/homeService.js',
-      'public/src/controllers/homeController.js',
-      'public/src/filters/homeFilter.js',
+      'app/src/app.js',
+      'app/src/js/ui-router.min.js',
+      'app/src/js/angular-local-storage.min.js',
+      'app/src/services/homeService.js',
+      'app/src/services/authInterceptorService.js',
+      'app/src/services/authService.js',
+      'app/src/controllers/homeController.js',
+      'app/src/filters/homeFilter.js'
     ])
     .pipe(plumber(function(err) {
       console.log('');
@@ -66,7 +68,7 @@ gulp.task('scripts', function () {
     .pipe(uglify({mangle: false}))
     .pipe(concat('scripts.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/dist/js/'))
+    .pipe(gulp.dest('app/dist/js/'))
 });
 
 gulp.task('default', ['styles', 'scripts'], function() {
@@ -82,6 +84,6 @@ gulp.task('watch', ['default'], function() {
   console.log('----------');
   console.log('');
 
-  gulp.watch('public/src/**/*.js', ['scripts'])
-  gulp.watch('public/src/**/*.css', ['styles'])
+  gulp.watch('app/src/**/*.js', ['scripts'])
+  gulp.watch('app/src/**/*.css', ['styles'])
 })
