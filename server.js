@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
+console.log("dirname: ", __dirname);
 function debugReq(req, res, next) {
   debug('params:', req.params);
   debug('query:', req.query);

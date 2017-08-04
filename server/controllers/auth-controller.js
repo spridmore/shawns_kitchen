@@ -6,6 +6,11 @@ function login (req, res) {
 	// 1. Validate email and password
 	var email = req.body.email
 	var password = req.body.password
+	var confirmPassword = req.body.confirmPassword
+
+	console.log("Email: ", email);
+	console.log("Password: ", password);
+	console.log("Confirm Password: ", confirmPassword);
 
 	if (!email || !password) {
 		res.status(400).json({ error: "Email and password must be set" })
@@ -36,7 +41,8 @@ function login (req, res) {
 							else {
 								// 4. Return a token
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now() }, process.env.JWT_SECRET);
-								res.header('x-auth', token).json(user)
+								user.token = token
+								res.header('Authorization', token).json(user)
 							}
 					});
 				}
@@ -80,12 +86,18 @@ function register (req, res) {
 
 						req.body.password = hash;
 						req.body.is_admin = true;
+						console.log("Req Body: ", req.body);
 
 						// 4. Creating the new user
 						User.create(req.body)
 							.then(function (user) {
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now()}, process.env.JWT_SECRET);
-								res.header('x-auth', token).status(200).json(user)
+
+								console.log("Register Token: ", token);
+
+								user.dataValues.token = token;
+								console.log("User before sent back: ", user);
+								res.header('Authorization', token).status(200).json(user)
 							})
 							.catch(function (error){
 								res.status(500).json({error: error});
@@ -101,7 +113,7 @@ function register (req, res) {
 }
 
 function verify(req, res, next) {
-  var token =  req.header('x-auth')
+  var token =  req.header('Authorization')
 	jwt.verify(token, process.env.JWT_SECRET, function (error, decoded) {
 		if (error) {
 			res.json({error: error})
@@ -114,7 +126,7 @@ function verify(req, res, next) {
 }
 
 function verifyAdmin(req, res, next) {
-  var token = req.header('x-auth')
+  var token = req.header('Authorization')
 	jwt.verify(token, process.env.JWT_SECRET, function (error, decoded) {
 		if (error) {
 			res.json({error: error})
