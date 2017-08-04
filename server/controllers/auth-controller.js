@@ -57,6 +57,7 @@ function register (req, res) {
 	// 1. Validate email and password
 	var email = req.body.email
 	var password = req.body.password
+	var compare = req.body.comparePassword
 
 	if (!email || !password) {
 		res.json({ error: "Email and password must be set" })
