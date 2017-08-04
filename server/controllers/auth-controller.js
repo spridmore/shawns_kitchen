@@ -6,11 +6,9 @@ function login (req, res) {
 	// 1. Validate email and password
 	var email = req.body.email
 	var password = req.body.password
-	var confirmPassword = req.body.confirmPassword
 
 	console.log("Email: ", email);
 	console.log("Password: ", password);
-	console.log("Confirm Password: ", confirmPassword);
 
 	if (!email || !password) {
 		res.status(400).json({ error: "Email and password must be set" })
@@ -42,7 +40,7 @@ function login (req, res) {
 								// 4. Return a token
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now() }, process.env.JWT_SECRET);
 								user.token = token
-								res.header('Authorization', token).json(user)
+								res.json(user)
 							}
 					});
 				}
