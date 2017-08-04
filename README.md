@@ -17,14 +17,18 @@ var jwt = require('jsonwebtoken')
         - The process.env.JWT_SECRET (concats this string before decoding)
     - It then decodes the payload to verify the user.
 
-Once a user is created or a login event has successfully been done set the header with the token
-`res.header('x-auth', token).status(200).json(user)`
+Once a user is created or a login event has successfully completed, add the token to the user object being returned.
+
+```javascript
+user.dataTypes.token = token;
+res.status(200).json(user)
+```
 
 Create custom middleware using jwt.verify to decode the custom header and set the req.token object.
 
 ```javascript
 function verify(req, res, next) {
-	var token =  req.header('x-auth')
+	var token = req.header('Authorization')
 	jwt.verify(token, process.env.JWT_SECRET, function (error, decoded) {
 		if (error) {
 			res.json({error: error})
@@ -47,18 +51,20 @@ function verify(req, res, next) {
       	- call back function
  - bcrypt.hash()
     - takes 3 arguments:
-       - The password (or string) you wish to salt
-       - The salt
-       - call back function that gives you the hash
+       - The password (or string) you wish to salt.
+       - The salt that gets returned from bcrypt.genSalt()
+       - call back function that gives you the hash.
  - bcrypt.compare()
     - takes 3 arguments:
        - The password (or string) you wish to compare.
-       - The hashed password (or string) you wish to compare it to.
+       - The hashed password (or string) you wish to compare to.
        - call back function with either an error or result(bool).
 
 ```javascript
 var bcrypt = require('bcryptjs')
+
 var password = req.body.password
+var compare = req.body.comparePassword
 
 bcrypt.genSalt(10, function(error, salt) {
   bcrypt.hash(password, salt, function(error, hash) {
