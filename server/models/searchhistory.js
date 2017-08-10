@@ -1,7 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var SearchHistory = sequelize.define('SearchHistory', {
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
     name: DataTypes.STRING,
     url: DataTypes.STRING,
     userId: DataTypes.INTEGER

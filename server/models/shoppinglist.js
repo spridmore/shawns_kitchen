@@ -1,7 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var ShoppingList = sequelize.define('ShoppingList', {
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
     listName: DataTypes.STRING,
     userId: DataTypes.INTEGER
   }, {
