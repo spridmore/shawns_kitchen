@@ -1,57 +1,57 @@
-var siteSearchHistory = [];
-var siteHistoryId = 0;
-
-var siteHistory = function (id, name, url, userId) {
-    this.id = id; 
-    this.name = name;
-    this.url = url;
-    this.userId = userId;
-}
-
-//GET
-function index(req, res, next) {
-    res.json({ users: users });
-}
-//POST
-function create(req, res, next) {
-    var tempUser = new user(userId++, req.body.name, req.body.age,
-        req.body.occupation);
-    users.push(tempUser);
-    res.json({ user: tempUser });
-}
-//GET
-function show(req, res, next) {
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].id == req.params.id) {
-            res.json({ user: users[i] })
-        }
-    }
-    res.json({ error: "Sorry that user does not exist." })
-}
-//PUT
-function update(req, res, next) {
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].id == req.params.id) {
-            users.splice(i, 1, new user(parseInt(req.params.id);
-            res.json({ user: users[i] });
-        }
-    }
-}
-//DELETE
-function destroy(req, res, next) {
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].id == req.params.id) {
-            users.splice(i, 1);
-            res.json({ user: users });
-        }
-    }
-    res.json({ error: "Sorry that user didn't exist." });
-}
+const SearchHistory = require('../models').SearchHistory;
 
 module.exports = {
-    index: index,
-    create: create,
-    show: show,
-    update: update,
-    destroy: destroy
-}
+    index(req, res) {
+        return SearchHistory
+            .all()
+            .then(searchhistory => res.status(200).send(searchhistory))
+            .catch(error => res.status(400).send(error));
+    },
+    show(req, res) {
+        SearchHistory.findById(req.params.id)
+            .then(function (searchhistory) {
+                res.status(200).json(searchhistory);
+            })
+            .catch(function (error) {
+                res.status(500).json(error);
+            });
+    },
+    create(req, res) {
+        return SearchHistory
+            .create({
+                id: req.body.id,
+                name: req.body.name,
+                url: req.body.url,
+                userId: req.body.userId,
+            })
+            .then(searchhistory => res.status(200).send(searchhistory))
+            .catch(error => res.status(400).send(error))
+    },
+    update(req, res) {
+        SearchHistory.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function (updatedRecords) {
+                res.status(200).json(updatedRecords);
+            })
+            .catch(function (error) {
+                res.status(500).json(error);
+            });
+    },
+
+    delete(req, res) {
+        SearchHistory.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function (deletedRecords) {
+                res.status(200).json(deletedRecords);
+            })
+            .catch(function (error) {
+                res.status(500).json(error);
+            });
+    }
+};

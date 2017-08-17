@@ -1,68 +1,57 @@
-var reviews = [];
-var userId = 0;
-
-var user = function (id, firstName, lastName, email) {
-    //would I get the id fro Oauth?
-    // this.id = id; 
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    // password?
-    // address 1 
-    // address2
-    // city
-    // state
-    // zip
-}
-// billing address?
-//  shipping address?
-
-
-
-//GET
-function index(req, res, next) {
-    res.json({ users: users });
-}
-//POST
-function create(req, res, next) {
-    var tempUser = new user(userId++, req.body.name, req.body.age,
-        req.body.occupation);
-    users.push(tempUser);
-    res.json({ user: tempUser });
-}
-//GET
-function show(req, res, next) {
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].id == req.params.id) {
-            res.json({ user: users[i] })
-        }
-    }
-    res.json({ error: "Sorry that user does not exist." })
-}
-//PUT
-function update(req, res, next) {
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].id == req.params.id) {
-            users.splice(i, 1, new user(parseInt(req.params.id);
-            res.json({ user: users[i] });
-        }
-    }
-}
-//DELETE
-function destroy(req, res, next) {
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].id == req.params.id) {
-            users.splice(i, 1);
-            res.json({ user: users });
-        }
-    }
-    res.json({ error: "Sorry that user didn't exist." });
-}
+const Recipe = require('../models').Recipe;
 
 module.exports = {
-    index: index,
-    create: create,
-    show: show,
-    update: update,
-    destroy: destroy
-}
+    index(req, res) {
+        return Recipe
+            .all()
+            .then(recipes => res.status(200).send(recipes))
+            .catch(error => res.status(400).send(error));
+    },
+    show(req, res) {
+        Recipe.findById(req.params.id)
+            .then(function (recipe) {
+                res.status(200).json(recipe);
+            })
+            .catch(function (error) {
+                res.status(500).json(error);
+            });
+    },
+    create(req, res) {
+        return Recipe
+            .create({
+                name: req.body.name,
+                servings: req.body.servings,
+                ingredientId: req.body.ingredientId
+
+            })
+            .then(recipes => res.status(200).send(recipes))
+            .catch(error => res.status(400).send(error))
+    },
+    update(req, res) {
+        Recipe.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function (updatedRecords) {
+                res.status(200).json(updatedRecords);
+            })
+            .catch(function (error) {
+                res.status(500).json(error);
+            });
+    },
+
+    delete(req, res) {
+        Recipe.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function (deletedRecords) {
+                res.status(200).json(deletedRecords);
+            })
+            .catch(function (error) {
+                res.status(500).json(error);
+            });
+    }
+};
