@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      id: {
+        type: Sequelize.INTEGER
+      },
       listName: {
         type: Sequelize.STRING
       },
