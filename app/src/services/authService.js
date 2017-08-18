@@ -13,31 +13,10 @@ angular
 
   var _login = function (loginData) {
     console.log(loginData);
-    var deferred = $q.defer();
 
-    $http.post("http://localhost:3000/users/login", loginData)
-      .then(function (response) {
-        console.log("Response: ", response);
-          localStorageService.set('authorizationData',
-          {
-            user_id: response.data.id,
-            token: response.data.token,
-            email: loginData.email
-          });
-          _getAuthData()
-
-        _authentication.isAuth = true;
-        _authentication.isAdmin = response.data.is_admin;
-
-        deferred.resolve(response);
-        $state.go('home');
-      },
-      function (error, status) {
-        _logOut();
-        deferred.reject(error);
-      });
-
-    return deferred.promise;
+    if(loginData.email && loginData.password) {
+      return $http.post("http://localhost:3000/users/login", loginData)
+    }
   };
 
   var _logOut = function () {
@@ -50,21 +29,29 @@ angular
 
   var _register = function(registerData) {
     console.log(registerData);
-    $http.post("http://localhost:3000/users/register", registerData)
-      .then(function(response) {
-        console.log("Register Response: ", response);
-        localStorageService.set('authorizationData',
-        {
-          user_id: response.data.id,
-          token: response.data.token,
-          email: response.data.email
-        });
 
-        $state.go("profile")
-      },
-      function(error) {
-        console.log(error);
-      })
+    if(registerData.password === registerData.confirmPassword) {
+
+      $http.post("http://localhost:3000/users/register", registerData)
+        .then(function(response) {
+          console.log("Register Response: ", response);
+          localStorageService.set('authorizationData',
+          {
+            user_id: response.data.id,
+            token: response.data.token,
+          });
+
+          $state.go("profile")
+        },
+        function(error) {
+          console.log(error);
+        })
+      }
+  }
+
+  var _setAuthData = function(data) {
+    _authentication.isAuth = true;
+    _authentication.isAdmin = data.is_admin;
   }
 
   // grabs and fills auth data to made accessible everywhere
@@ -84,6 +71,7 @@ angular
   authServiceFactory.logOut = _logOut;
   authServiceFactory.register = _register;
   authServiceFactory.getAuthData = _getAuthData;
+  authServiceFactory.setAuthData = _setAuthData;
   authServiceFactory.authentication = _authentication;
 
   return authServiceFactory;
