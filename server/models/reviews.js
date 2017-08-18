@@ -13,12 +13,9 @@ module.exports = function(sequelize, DataTypes) {
     date: DataTypes.DATE,
     recipeId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  Reviews.associate = function(models) {
+        // associations can be defined here
+      };
   return Reviews;
 };
