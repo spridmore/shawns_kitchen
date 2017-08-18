@@ -14,8 +14,10 @@ module.exports = function(sequelize, DataTypes) {
     recipeId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
   });
+
   Reviews.associate = function(models) {
-        // associations can be defined here
-      };
+    // associations can be defined here
+  };
+
   return Reviews;
 };

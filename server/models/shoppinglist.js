@@ -10,11 +10,12 @@ module.exports = function (sequelize, DataTypes) {
     listName: DataTypes.STRING,
     userId: DataTypes.INTEGER
   });
+
   ShoppingList.associate = function (models) {
-    // associations can be defined here
     ShoppingList.hasMany(models.Ingredient, {
       onDelete: 'cascade'
     });
   };
+  
   return ShoppingList;
 };

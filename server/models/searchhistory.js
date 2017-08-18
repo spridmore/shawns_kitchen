@@ -11,8 +11,10 @@ module.exports = function(sequelize, DataTypes) {
     url: DataTypes.STRING,
     userId: DataTypes.INTEGER
   });
+
   SearchHistory.associate = function(models) {
-        // associations can be defined here
-      };
+    // associations can be defined here
+  };
+
   return SearchHistory;
 };

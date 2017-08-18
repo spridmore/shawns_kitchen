@@ -2,7 +2,6 @@ var User = require('../models/').User;
 
 //Get a list of all users using model.findAll()
 function index(req, res) {
-  console.log('index-users path');
   User.findAll()
     .then(function (users) {
       console.log(users);

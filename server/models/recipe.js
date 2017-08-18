@@ -10,10 +10,12 @@ module.exports = function (sequelize, DataTypes) {
     name: DataTypes.STRING,
     servings: DataTypes.INTEGER,
   });
+
   Recipe.associate = function (models){
     Recipe.hasMany(models.Ingredient, {
       onDelete: 'cascade'
     });
   };
+  
   return Recipe;
 };

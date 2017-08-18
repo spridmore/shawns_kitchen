@@ -17,11 +17,9 @@ module.exports = function(sequelize, DataTypes) {
     underscored: true
   });
 
-  // User.associate = function(models) {
-  //   this.hasMany(models.Something, {
-  //     onDelete: 'cascade'
-  //   });
-  // };
+  User.associate = function(models) {
+    // associations can be defined here
+  };
 
   return User;
 };
