@@ -11,7 +11,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      userid: {
+      servings: {
         type: Sequelize.INTEGER
       },
       createdAt: {

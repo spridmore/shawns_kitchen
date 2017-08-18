@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  const Recipes = sequelize.define('Recipes', {
-    id:{ 
+  var Recipe = sequelize.define('Recipe', {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
@@ -11,10 +11,9 @@ module.exports = function(sequelize, DataTypes) {
     servings: DataTypes.INTEGER
   });
 
-    Recipes.associate = function(models) {
+    Recipe.associate = function(models) {
         // associations can be defined here
       }
-    
-
-  return Recipes;
+  return Recipe;
 };
+ 
