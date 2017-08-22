@@ -24,30 +24,36 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/");
 
   $stateProvider
-    .state("home", {
+		.state('app', {
+			abstract: true,
+			url: '',
+			templateUrl: '../src/views/app-container.html',
+			controller: 'appController'
+		})
+    .state("app.home", {
       url: "/",
       templateUrl: "../src/views/home.html",
-      controller: "homeController",
+      controller: "loginController",
 			// resolve: { authenticate: authenticate },
       metaTags: {
         title: "",
         description: ""
       }
     })
-    .state("profile", {
+    .state("app.profile", {
       url: "/profile",
       templateUrl: "../src/views/profile.html",
-      controller: "homeController",
+      controller: "loginController",
 			resolve: { authenticate: authenticate },
       metaTags: {
         title: "",
         description: ""
       }
     })
-    .state("login", {
+    .state("app.login", {
       url: "/login",
       templateUrl: "../src/views/login.html",
-      controller: "homeController",
+      controller: "loginController",
 			// resolve: { authenticate: authenticate },
       metaTags: {
         title: "",
@@ -76,7 +82,7 @@ function authenticate($q, authService, $state, $timeout) {
     $timeout(function() {
       // This code runs after the authentication promise has been rejected.
       // Go to the log-in page
-      $state.go('login')
+      $state.go('app.login')
     })
 
     // Reject the authentication promise to prevent the state from loading

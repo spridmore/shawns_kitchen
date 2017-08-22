@@ -14,7 +14,7 @@ function login (req, res) {
 		res.status(400).json({ error: "Email and password must be set" })
 	}
 	else {
-		// 2. Verify that user existss
+		// 2. Verify that user exists
 		User.findAll({
 			where: {
 				email: email

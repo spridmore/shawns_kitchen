@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Recipe = sequelize.define('Recipe', {
     id: {
       type: DataTypes.INTEGER,
@@ -8,13 +8,14 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     name: DataTypes.STRING,
-    servings: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+    servings: DataTypes.INTEGER,
   });
+
+  Recipe.associate = function (models){
+    Recipe.hasMany(models.Ingredient, {
+      onDelete: 'cascade'
+    });
+  };
+  
   return Recipe;
 };

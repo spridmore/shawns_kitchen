@@ -10,12 +10,11 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     url: DataTypes.STRING,
     userId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  SearchHistory.associate = function(models) {
+    // associations can be defined here
+  };
+
   return SearchHistory;
 };

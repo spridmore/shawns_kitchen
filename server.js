@@ -11,6 +11,10 @@ const models = require('./server/models/');
 require('dotenv').load()
 
 var user = require('./server/routes/user');
+var shoppingList = require('./server/routes/shoppingList');
+var searchHistory = require('./server/routes/searchHistory');
+var reviews = require('./server/routes/reviews');
+var recipes = require('./server/routes/recipes');
 
 var app = express();
 app.use(compression())
@@ -33,6 +37,10 @@ function debugReq(req, res, next) {
 app.use(debugReq);
 
 app.use('/users', user);
+app.use('/shoppinglists', shoppingList);
+app.use('/searchHistory', searchHistory);
+app.use('/reviews', reviews);
+app.use('/recipes', recipes);
 
 models.sequelize
   .authenticate()

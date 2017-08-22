@@ -18,24 +18,19 @@
 
   <div class="form-group">
     <label>Password</label>
-    <input type="text" class="form-control" data-ng-model="user.password">
+    <input type="password" class="form-control" data-ng-model="user.password">
   </div>
 
   <div class="form-group">
     <label>Confirm Password</label>
-    <input type="text" class="form-control" data-ng-model="user.confirmPassword">
+    <input type="password" class="form-control" data-ng-model="user.confirmPassword">
   </div>
 
-  <button class="btn btn-primary" data-ng-click="login()">Submit</button>
+  <button class="btn btn-primary" data-ng-click="login()">Log In</button>
   <button class="btn btn-primary" data-ng-click="register()">Register</button>
 
   <div data-ng-if="loginError">
-    <p>Please provide your email and password!</p>
+    <p>{{ loginErrorMessage }}</p>
   </div>
-
-  <div data-ng-if="registerError">
-    <p>Please provide your email and password!</p>
-  </div>
-
 
 </div>
