@@ -24,7 +24,7 @@ angular
 
     _authentication.isAuth = false;
     _authentication.isAdmin = false;
-    $state.go("home")
+    $state.go("app.home")
   };
 
   var _register = function(registerData) {
@@ -41,7 +41,7 @@ angular
             token: response.data.token,
           });
 
-          $state.go("profile")
+          $state.go("app.profile")
         },
         function(error) {
           console.log(error);
