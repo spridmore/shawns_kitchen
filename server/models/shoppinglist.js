@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var ShoppingList = sequelize.define('ShoppingList', {
     id: {
       type: DataTypes.INTEGER,
@@ -9,12 +9,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     listName: DataTypes.STRING,
     userId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  ShoppingList.associate = function (models) {
+    ShoppingList.hasMany(models.Ingredient, {
+      onDelete: 'cascade'
+    });
+  };
+  
   return ShoppingList;
 };
