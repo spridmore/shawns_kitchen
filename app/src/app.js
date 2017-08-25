@@ -60,6 +60,46 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+    .state("app.recipes", {
+      url: "/recipes",
+      templateUrl: "../src/views/recipes.html",
+      controller: "recipesController",
+			// resolve: { authenticate: authenticate },
+      metaTags: {
+        title: "",
+        description: ""
+      }
+    })
+    .state("app.userRecipes", {
+      url: "/user/recipes",
+      templateUrl: "../src/views/recipes-user.html",
+      controller: "recipesController",
+			// resolve: { authenticate: authenticate },
+      metaTags: {
+        title: "",
+        description: ""
+      }
+    })
+    .state("app.shoppingLists", {
+      url: "/shoppingLists",
+      templateUrl: "../src/views/shoppingLists.html",
+      controller: "shoppingListController",
+			// resolve: { authenticate: authenticate },
+      metaTags: {
+        title: "",
+        description: ""
+      }
+    })
+    .state("app.shoppingList", {
+      url: "/shoppingLists/:id",
+      templateUrl: "../src/views/shoppingList.html",
+      controller: "shoppingListController",
+			// resolve: { authenticate: authenticate },
+      metaTags: {
+        title: "",
+        description: ""
+      }
+    })
 })
 
 // Configure every outgoing request with new headers found in authInterceptorService
