@@ -8,16 +8,16 @@ var sourcemaps = require('gulp-sourcemaps')
 var babel = require('gulp-babel');
 
 //Styles
-gulp.task('styles', function() {
+gulp.task('styles', function () {
   console.log('---------');
   console.log('CSS Tasks');
   console.log('---------');
   console.log('');
 
   return gulp.src([
-      'app/src/css/styles.css'
-    ])
-    .pipe(plumber(function(err) {
+    'app/src/css/styles.css'
+  ])
+    .pipe(plumber(function (err) {
       console.log('');
       console.log('---------------');
       console.log('CSS Task Error:');
@@ -43,19 +43,22 @@ gulp.task('scripts', function () {
 
   // Modules -> Services -> Controllers -> Filters
   return gulp.src([
-      'app/src/app.js',
-      'app/src/js/ui-router.min.js',
-      'app/src/js/angular-local-storage.min.js',
-      'app/src/services/homeService.js',
-      'app/src/services/authInterceptorService.js',
-      'app/src/services/authService.js',
-      'app/src/controllers/appController.js',
-      'app/src/components/navbar/navbar.js',
-      'app/src/controllers/homeController.js',
-      'app/src/controllers/loginController.js',
-      'app/src/filters/homeFilter.js'
-    ])
-    .pipe(plumber(function(err) {
+    'app/src/app.js',
+    'app/src/js/ui-router.min.js',
+    'app/src/js/angular-local-storage.min.js',
+    'app/src/services/homeService.js',
+    'app/src/services/authInterceptorService.js',
+    'app/src/services/authService.js',
+    'app/src/services/recipesService.js',
+    'app/src/services/shoppingListService.js',
+    'app/src/controllers/appController.js',
+    'app/src/controllers/homeController.js',
+    'app/src/controllers/loginController.js',
+    'app/src/components/navbar/navbar.js',
+    'app/src/components/footer/footer.js',
+    'app/src/filters/homeFilter.js'
+  ])
+    .pipe(plumber(function (err) {
       console.log('');
       console.log('--------------');
       console.log('JS Task Error:');
@@ -68,20 +71,20 @@ gulp.task('scripts', function () {
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(uglify({mangle: false}))
+    .pipe(uglify({ mangle: false }))
     .pipe(concat('scripts.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('app/dist/js/'))
 });
 
-gulp.task('default', ['styles', 'scripts'], function() {
+gulp.task('default', ['styles', 'scripts'], function () {
   console.log('------------');
   console.log('DEFAULT Task');
   console.log('------------');
   console.log('');
 })
 
-gulp.task('watch', ['default'], function() {
+gulp.task('watch', ['default'], function () {
   console.log('----------');
   console.log('WATCH Task');
   console.log('----------');
