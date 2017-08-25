@@ -41,7 +41,7 @@ gulp.task('scripts', function () {
   console.log('--------');
   console.log('');
 
-  // Modules -> Services -> Controllers -> Filters
+  // Modules -> Services -> Controllers -> Components -> Filters
   return gulp.src([
       'app/src/app.js',
       'app/src/js/ui-router.min.js',
@@ -50,9 +50,9 @@ gulp.task('scripts', function () {
       'app/src/services/authInterceptorService.js',
       'app/src/services/authService.js',
       'app/src/controllers/appController.js',
-      'app/src/components/navbar/navbar.js',
       'app/src/controllers/homeController.js',
       'app/src/controllers/loginController.js',
+      'app/src/components/navbar/navbar.js',
       'app/src/filters/homeFilter.js'
     ])
     .pipe(plumber(function(err) {
