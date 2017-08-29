@@ -41,19 +41,21 @@ gulp.task('scripts', function () {
   console.log('--------');
   console.log('');
 
-  // Modules -> Services -> Controllers -> Filters
+  // Modules -> Services -> Controllers -> Components -> Filters
   return gulp.src([
     'app/src/app.js',
     'app/src/js/ui-router.min.js',
     'app/src/js/angular-local-storage.min.js',
-    'app/src/services/homeService.js',
     'app/src/services/authInterceptorService.js',
     'app/src/services/authService.js',
+    'app/src/services/homeService.js',
     'app/src/services/recipesService.js',
     'app/src/services/shoppingListService.js',
     'app/src/controllers/appController.js',
     'app/src/controllers/homeController.js',
     'app/src/controllers/loginController.js',
+    'app/src/controllers/recipesController.js',
+    'app/src/controllers/shoppingListController.js',
     'app/src/components/navbar/navbar.js',
     'app/src/components/footer/footer.js',
     'app/src/filters/homeFilter.js'

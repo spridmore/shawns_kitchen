@@ -1,8 +1,8 @@
 'use strict';
-app.directive('footer', function () {
+app.directive('cfooter', function () {
    return {
      restrict: 'E',
-     templateUrl: '../src/components/footer/footer.html',
-     controller: 'loginController'
+     templateUrl: '../src/components/footer/footer.html'
+    //  controller: 'homeController'
    };
 });

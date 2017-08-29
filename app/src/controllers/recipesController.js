@@ -1,4 +1,4 @@
 'use strict';
-app.controller("myRecipesController", function($scope, $state, $stateParams, authService, localStorageService) {
+app.controller("recipesController", function($scope, $state, $stateParams, authService, localStorageService) {
 
 })
