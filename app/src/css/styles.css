@@ -9,3 +9,43 @@ body {
   font-weight: 400;
   font-family: 'Open Sans', sans-serif;
 }
+
+.foodNav {
+  height: 120px;
+  background-color:#A5A5A5;
+  padding: 25px;
+  color: black;
+}
+
+.navLink  {
+  display: inline;
+  color: black;
+  padding: 0 5px;
+  font-size: 35px;
+  font-weight: 200;
+  cursor: pointer;
+}
+
+#logoLink {
+font-size: 60px;
+font-weight: 400;
+}
+
+ #navLogin {
+}
+
+footer {
+  height: 100px;
+  background-color: white;
+  margin-top: 25px;
+  clear:both;
+}
+
+.footerItem {
+  list-style-type: none;
+  padding-top: 45px;
+}
+
+a {
+  color: black;
+}
