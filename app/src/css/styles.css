@@ -9,12 +9,20 @@ body {
   font-weight: 400;
   font-family: 'Open Sans', sans-serif;
 }
-
+header {
+  background: url("../../../src/images/berries.jpg")center center no-repeat;
+  background-size: cover;
+  height: 700px; 
+}
 .foodNav {
+  position: fixed;
   height: 120px;
+  width: 100%;
   background-color:#A5A5A5;
   padding: 25px;
+  padding-top: 35px;
   color: black;
+  margin-bottom: 0;
 }
 
 .navLink  {
@@ -43,9 +51,25 @@ footer {
 
 .footerItem {
   list-style-type: none;
-  padding-top: 45px;
-}
+ }
 
 a {
   color: black;
+}
+.hero {
+  font-size: 80px;
+  color: black;
+  text-align: center;
+  margin-top: 230px;
+}
+.heroHome {
+  font-size: 100px;
+  color: white;
+  text-align: center;
+  margin-top: 230px;
+}
+.recipesContainer {
+  background: url("");
+  background-image: 100%;
+  
 }
