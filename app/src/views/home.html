@@ -8,6 +8,7 @@
     <div class="col-md-4" ng-repeat="recipe in recipes">
       <div class="recipesContainer">
         <h3 class="recipeHeading">{{ recipe.name }}</h3>
+        <p class ="recipeImage"><img ng-src="{{ recipe.image }}"></p>        
         <p class="recipeServe"><strong>Servings: </strong> {{ recipe.servings }}</p>
         <p class="recipeInstruct"><strong>Instructions: </strong>{{ recipe.instructions }}</p>
       </div>
