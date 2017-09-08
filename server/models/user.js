@@ -18,7 +18,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   User.associate = function(models) {
-    // associations can be defined here
+    this.hasMany(models.recipe, 
+      {onDelete: "Cascade"})
   };
 
   return User;
