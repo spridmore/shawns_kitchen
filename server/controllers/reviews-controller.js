@@ -1,4 +1,4 @@
-const Reviews = require('../models').Reviews;
+const Reviews = require('../models').review;
 
 function index(req, res) {
   Reviews.all()

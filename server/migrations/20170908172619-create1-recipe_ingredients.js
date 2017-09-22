@@ -2,39 +2,44 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('user_recipe', {
+    return queryInterface.createTable('recipe_ingredient', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      ingredient_id: {
         type: Sequelize.INTEGER,
         reference: {
-          model: "user",
+          model: "ingredient",
           key: "id"
         }
       },
-      recipeId: {
+      recipe_id: {
         type: Sequelize.INTEGER,
         reference: {
           model: "recipe",
           key: "id"
         }
+      },
+      quantity: {
+        type: Sequelize.INTEGER,        
+      },
+      measurement: {
+        type: Sequelize.TEXT,
+      },
+      measurementShort: {
+        type: Sequelize.TEXT,        
+      },
+      measurementLong: {
+        type: Sequelize.TEXT,                
       }
+
     });
   },
 
-  
-
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+    return queryInterface.dropTable('recipe_ingredient')
   }
 };

@@ -1,30 +1,36 @@
 'use strict';
 
+var dt = new Date();
+var utcDate = dt.toUTCString();
+
 module.exports = {
   up: function (queryInterface, Sequelize) {
-   return queryInterface.bulkInsert("Users", [{
-     first_name: "Shawn",
-     email: "shawnsEmail@yahoo.com",
-     password: "password"
-   },
-  {
-    first_name: "John",
-    email: "johnsEmail@yahoo.com",
-    password: "wordpass"
-  },{
-    first_name: "Bill",
-    email: "billsEmail@yahoo.com",
-    password: "pordwass"
-  }])
+    return queryInterface.bulkInsert("users", [
+      {
+        first_name: "Shawn",
+        email: "shawnsEmail@yahoo.com",
+        password: "password",
+        created_at: utcDate,
+        updated_at: utcDate,
+      },
+      {
+        first_name: "John",
+        email: "johnsEmail@yahoo.com",
+        password: "wordpass",
+        created_at: utcDate,
+        updated_at: utcDate,
+      },
+      {
+        first_name: "Bill",
+        email: "billsEmail@yahoo.com",
+        password: "pordwass",
+        created_at: utcDate,
+        updated_at: utcDate,
+      }
+    ])
   },
 
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
+    return queryInterface.dropTables('users')
   }
 };

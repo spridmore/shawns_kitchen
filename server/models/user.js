@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('User', {
+module.exports = function (sequelize, DataTypes) {
+  var user = sequelize.define('user', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -13,14 +13,29 @@ module.exports = function(sequelize, DataTypes) {
     password: DataTypes.STRING,
     is_admin: DataTypes.BOOLEAN
   },
-  {
-    underscored: true
-  });
+    {
+      underscored: true
+    });
 
-  User.associate = function(models) {
-    this.hasMany(models.recipe, 
-      {onDelete: "Cascade"})
+  user.associate = function (models) {
+    this.belongsToMany(models.user_recipe, 
+      { through: 'user_recipe', as: 'recipe'},
+      { onDelete: "Cascade" },
+    )
+  };
+  user.associate = function (models) {
+    this.hasMany(models.review, 
+      { onDelete: "Cascade" },
+    )
+  };
+  user.associate = function (models) {
+    this.hasMany(models.shopping_list,
+      { onDelete: "Cascade" })
+  };
+  user.associate = function (models) {
+    this.hasMany(models.search_history,
+      { onDelete: "Cascade" })
   };
 
-  return User;
+  return user;
 };
