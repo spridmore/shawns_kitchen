@@ -9,21 +9,32 @@ body {
   font-weight: 400;
   font-family: 'Open Sans', sans-serif;
 }
-
-.foodNav {
-  height: 120px;
-  background-color:#A5A5A5;
-  padding: 25px;
-  color: black;
+header {
+  background: url("../../../src/images/berries.jpg")center center no-repeat;
+  background-size: cover;
+  height: 700px; 
 }
-
+.foodNav {
+  position: fixed;
+  height: 120px;
+  width: 100%;
+  background-color:#D0CED6;
+  padding: 25px;
+  padding-top: 35px;
+  /* color: black; */
+  margin-bottom: 0;
+  z-index:10;
+}
+.navContainer {
+  
+}
 .navLink  {
   display: inline;
-  color: black;
-  padding: 0 5px;
+   padding: 0 5px;
   font-size: 35px;
   font-weight: 200;
   cursor: pointer;
+ 
 }
 
 #logoLink {
@@ -35,17 +46,50 @@ font-weight: 400;
 }
 
 footer {
-  height: 100px;
-  background-color: white;
-  margin-top: 25px;
+  height: 150px;
+  padding-top: 15px;
+  margin-top:20px; 
+  background-color: #D0CED6;
   clear:both;
+  color:black;
+
 }
 
 .footerItem {
   list-style-type: none;
-  padding-top: 45px;
-}
+  }
 
 a {
   color: black;
+  }
+.hero {
+  font-size: 80px;
+  color: black;
+  text-align: center;
+  margin-top: 230px;
 }
+.heroHome {
+  font-size: 100px;
+  color: white;
+  text-align: center;
+  margin-top: 230px;
+}
+.recipesContainer {
+  background: url("");
+  background-image: 100%;
+  padding:10px;
+ }
+ .recipeHeading {
+font-size:30px;
+padding: 10px;
+padding-top:20px;
+ }
+ .recipeImage {
+
+ }
+ .recipeServe {
+
+ }
+ .recipeInstruct {
+
+ }

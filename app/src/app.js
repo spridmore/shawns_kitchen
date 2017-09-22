@@ -33,7 +33,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state("app.home", {
       url: "/",
       templateUrl: "../src/views/home.html",
-      controller: "loginController",
+      controller: "homeController",
 			// resolve: { authenticate: authenticate },
       metaTags: {
         title: "",
