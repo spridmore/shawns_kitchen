@@ -30,11 +30,11 @@ header {
 }
 .navLink  {
   display: inline;
-  /* color: black; */
-  padding: 0 5px;
+   padding: 0 5px;
   font-size: 35px;
   font-weight: 200;
   cursor: pointer;
+ 
 }
 
 #logoLink {
@@ -51,16 +51,17 @@ footer {
   margin-top:20px; 
   background-color: #D0CED6;
   clear:both;
+  color:black;
 
 }
 
 .footerItem {
   list-style-type: none;
- }
+  }
 
 a {
   color: black;
-}
+  }
 .hero {
   font-size: 80px;
   color: black;
@@ -78,8 +79,7 @@ a {
   background-image: 100%;
   padding:10px;
  }
- 
-.recipeHeading {
+ .recipeHeading {
 font-size:30px;
 padding: 10px;
 padding-top:20px;
