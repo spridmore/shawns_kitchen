@@ -9,3 +9,15 @@ body {
   font-weight: 400;
   font-family: 'Open Sans', sans-serif;
 }
+
+.homeContainer {
+  width: 1300px !important;
+  background-color: black;
+}
+
+.heroImage {
+}
+
+.foodImage {
+  opacity: .7;
+}
