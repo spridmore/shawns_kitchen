@@ -44,7 +44,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/profile",
       templateUrl: "../src/views/profile.html",
       controller: "loginController",
-			resolve: { authenticate: authenticate },
+			// resolve: { authenticate: authenticate },
       metaTags: {
         title: "",
         description: ""
