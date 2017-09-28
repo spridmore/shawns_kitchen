@@ -1,8 +1,8 @@
-var User = require('../models/').User;
+var model = require('../models/');
 
 //Get a list of all users using model.findAll()
 function index(req, res) {
-  User.findAll()
+  model.user.findAll()
     .then(function (users) {
       console.log(users);
       res.status(200).json(users);

@@ -15,18 +15,16 @@ module.exports = function (sequelize, DataTypes) {
   },
     {
       underscored: true
-    });
-
+  });
+  
   user.associate = function (models) {
     this.belongsToMany(models.user_recipe, 
       { through: 'user_recipe', as: 'recipe'},
-      { onDelete: "Cascade" },
-    )
+      { onDelete: "Cascade" })
   };
   user.associate = function (models) {
     this.hasMany(models.review, 
-      { onDelete: "Cascade" },
-    )
+      { onDelete: "Cascade" })
   };
   user.associate = function (models) {
     this.hasMany(models.shopping_list,

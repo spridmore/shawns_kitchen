@@ -1,48 +1,36 @@
-const Recipe = require('../models/recipe');
-const connection = require('../config/db')
+const model = require('../models');
 
-console.log(connection)
-
-// connection.query('SELECT * FROM recipes WHERE id = 1').then(hotdog => {
-//  console.log(hotdog)
-// });
-
-console.log(Recipe)
+var recipe_list = model.recipe.findAll()
 
 function index(req, res) {
-
-  connection.query('SELECT * FROM recipes where id = 1').then(hotdog => {
-    console.log("Index response: " + hotdog)
-   });
-}
+  model.recipe.findAll()
+  .then(function (recipe) {
+    console.log(recipe);
+    res.status(200).json(recipe);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
+};
 
 function create(req, res) {
-  console.log(Recipe)
-  // Recipe.create({
-  //   name: 'Moldy bread',
-  //   servings: 99,
-  // }).then(newRecipe => {
-  //   console.log(newRecipe)
-  // })
-}
+  return model.recipe
+    .create({
+      name: req.body.name,
+      servings: req.param.servings
+    })
+    .then(Recipe => res.status(201).send(Recipe))
+    .catch(Recipe => res.status(400).send(error));
+    for(var i = 0; i < recipe_list.length; i++){
+      console.log(recipe_list[i].dataValues.name)
+    };
+};
 
-//   Recipe.create({
-//     name: req.body.name,
-//     servings: req.body.servings,
-//     ingredient_id: req.body.ingredientId
-//   })
-//     .then(function(recipes){
-//       res.status(200).send(recipes);
-//     })
-//     .catch(function(error){
-//       res.status(400).send(error);
-//     });
-// }
- 
 function show(req, res) {
-  Recipe.findById(req.params.id)
-    .then(function (recipe) {
-      res.status(200).json(recipe);
+  models.recipe.findById(req.params.id)
+    .then(function (recipe_list) {
+      res.status(200).json(recipe_list);
     })
     .catch(function (error) {
       res.status(500).json(error);
