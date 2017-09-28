@@ -1,33 +1,36 @@
-const Recipe = require('../models').Recipe;
+const model = require('../models');
+
+var recipe_list = model.recipe.findAll()
 
 function index(req, res) {
-  Recipe.all()
-    .then(function(recipes){
-      res.status(200).send(recipes);
-    })
-    .catch(function(error){
-      res.status(400).send(error);
-    });
-}
+  model.recipe.findAll()
+  .then(function (recipe) {
+    console.log(recipe);
+    res.status(200).json(recipe);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
+};
 
 function create(req, res) {
-  Recipe.create({
-    name: req.body.name,
-    servings: req.body.servings,
-    ingredientId: req.body.ingredientId
-  })
-    .then(function(recipes){
-      res.status(200).send(recipes);
+  return model.recipe
+    .create({
+      name: req.body.name,
+      servings: req.param.servings
     })
-    .catch(function(error){
-      res.status(400).send(error);
-    });
-}
+    .then(Recipe => res.status(201).send(Recipe))
+    .catch(Recipe => res.status(400).send(error));
+    for(var i = 0; i < recipe_list.length; i++){
+      console.log(recipe_list[i].dataValues.name)
+    };
+};
 
 function show(req, res) {
-  Recipe.findById(req.params.id)
-    .then(function (recipe) {
-      res.status(200).json(recipe);
+  models.recipe.findById(req.params.id)
+    .then(function (recipe_list) {
+      res.status(200).json(recipe_list);
     })
     .catch(function (error) {
       res.status(500).json(error);
