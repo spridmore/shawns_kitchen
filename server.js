@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug');
 const compression = require('compression');
-const models = require('./server/models/');
+const models = require('./server/models');
 
 require('dotenv').load()
 
@@ -50,5 +50,6 @@ models.sequelize
   .catch(function(error) {
     console.log("Error creating connection:", error);
   });
+
 
 module.exports = app;
