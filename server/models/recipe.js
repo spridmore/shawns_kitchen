@@ -1,21 +1,40 @@
 'use strict';
-module.exports = function (sequelize, DataTypes) {
-  var Recipe = sequelize.define('Recipe', {
+module.exports = function (sequelize, Sequelize) {
+  var recipe = sequelize.define('recipe', {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-    name: DataTypes.STRING,
-    servings: DataTypes.INTEGER,
+    name: Sequelize.STRING,
+    servings: Sequelize.INTEGER,
   });
 
-  Recipe.associate = function (models){
-    Recipe.hasMany(models.Ingredient, {
-      onDelete: 'cascade'
-    });
+  recipe.associate = function (models) {
+    this.belongsTo(models.ingredient, 
+      { through: 'recipe_ingredient', foreignKey:'recipe_id' }),
+      { onDelete: 'Cascade'}
+  };
+
+  recipe.associate = function (models) {
+    this.belongsTo(models.user, 
+      { through: 'user_recipe', foreignKey:'recipe_id' }),
+      { onDelete: 'Cascade'}
   };
   
-  return Recipe;
+  recipe.associate = function (models) {
+    this.belongsTo(models.shopping_list, 
+      { through: 'recipe_shopping_list', foreignKey:'recipe_id' }),
+      { onDelete: 'Cascade'}
+  };
+
+  recipe.associate = function(models) {
+    this.hasMany(models.review,
+      { onDelete: 'Cascade' }
+    )
+  }
+
+
+  return recipe;
 };
