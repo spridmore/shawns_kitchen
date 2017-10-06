@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp">
+<html lang="en" ng-app="myApp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +32,18 @@
 
 <div ui-view></div>
 
+<!-- module -->
+<script type="text/javascript" src="./src/app.js"></script>
+
+<!-- controllers -->
 <script type="text/javascript" src="./dist/js/scripts.js"></script>
+
+<script type="text/javascript" src="./src/controllers/loginController.js"></script>
+
+<!-- services -->
+<script type="text/javascript" src="./src/services/authService.js"></script>
+<script type="text/javascript" src="./src/services/authInterceptorService.js"></script>
+
+
 </body>
 </html>

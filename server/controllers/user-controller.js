@@ -24,6 +24,7 @@ function show(req, res) {
   });
 }
 
+
 //Edit an existing user details using model.update()
 function update(req, res) {
   User.update(req.body, {

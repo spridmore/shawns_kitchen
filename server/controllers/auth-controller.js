@@ -1,4 +1,4 @@
-var User = require('../models/').User
+var model = require('../models/')
 var bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken')
 
@@ -6,16 +6,15 @@ function login (req, res) {
 	// 1. Validate email and password
 	var email = req.body.email
 	var password = req.body.password
-
-	console.log("Email: ", email);
-	console.log("Password: ", password);
+	console.log("email: ", email);
+	console.log("password: ", password);
 
 	if (!email || !password) {
 		res.status(400).json({ error: "Email and password must be set" })
 	}
 	else {
 		// 2. Verify that user exists
-		User.findAll({
+		model.user.findAll({
 			where: {
 				email: email
 			}
@@ -37,10 +36,13 @@ function login (req, res) {
 								res.status(401).json({ error: "Invalid password"})
 							}
 							else {
+								console.log("1.auth-controller logged in")
+								
 								// 4. Return a token
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now() }, process.env.JWT_SECRET);
 								user.token = token
 								res.json(user)
+								console.log("auth-controller logged in")
 							}
 					});
 				}
@@ -52,19 +54,14 @@ function login (req, res) {
 }
 
 function register (req, res) {
-	// 1. Validate email and password
-	var email = req.body.email
-	var password = req.body.password
-	var compare = req.body.comparePassword
-
-	if (!email || !password) {
+	if (!req.body.email || !req.body.password) {
 		res.json({ error: "Email and password must be set" })
 	}
 
 	// 2. Verify user has not already registered
-	User.findAll({
+	model.user.findAll({
 	  where: {
-	    email: email
+	    email: req.body.email
 	  }
 	})
 		.then(function (user) {
@@ -78,7 +75,7 @@ function register (req, res) {
 						res.json({error: error})
 					};
 
-					bcrypt.hash(password, salt, function(error, hash) {
+					bcrypt.hash(req.body.password, salt, function(error, hash) {
 						if (error) {
 							res.json({error: error})
 						}
@@ -88,10 +85,11 @@ function register (req, res) {
 						console.log("Req Body: ", req.body);
 
 						// 4. Creating the new user
-						User.create(req.body)
+						model.user.create(req.body)
 							.then(function (user) {
+								console.log("inside create_____")
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now()}, process.env.JWT_SECRET);
-
+								res.json({error: error})
 								console.log("Register Token: ", token);
 
 								user.dataValues.token = token;
@@ -99,6 +97,7 @@ function register (req, res) {
 								res.status(200).json(user)
 							})
 							.catch(function (error) {
+								console.log("inside create error")
 								res.status(500).json({error: error});
 							});
 					})
