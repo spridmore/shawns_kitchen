@@ -1,5 +1,3 @@
-angular
-  .module("myApp")
-  .service("homeService", function($http) {
+app.service("homeService", function($http) {
 
-  })
+})

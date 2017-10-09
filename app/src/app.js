@@ -30,6 +30,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: '../src/views/app-container.html',
 			controller: 'appController'
 		})
+
     .state("app.home", {
       url: "/",
       templateUrl: "../src/views/home.html",
@@ -40,6 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+
     .state("app.profile", {
       url: "/profile",
       templateUrl: "../src/views/profile.html",
@@ -50,6 +52,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+
     .state("app.login", {
       url: "/login",
       templateUrl: "../src/views/login.html",
@@ -60,6 +63,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+
     .state("app.recipes", {
       url: "/recipes",
       templateUrl: "../src/views/recipes.html",
@@ -70,6 +74,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+
     .state("app.userRecipes", {
       url: "/user/recipes",
       templateUrl: "../src/views/recipes-user.html",
@@ -80,6 +85,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+
     .state("app.shoppingLists", {
       url: "/shoppingLists",
       templateUrl: "../src/views/shoppingLists.html",
@@ -90,6 +96,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+
     .state("app.shoppingList", {
       url: "/shoppingLists/:id",
       templateUrl: "../src/views/shoppingList.html",
@@ -109,7 +116,7 @@ app.config(function ($httpProvider) {
 
 // Load user data into the authService when the app boots up.
 app.run(['authService', function (authService) {
-    authService.getAuthData();
+  authService.getAuthData();
 }]);
 
 function authenticate($q, authService, $state, $timeout) {
