@@ -24,11 +24,13 @@ fs
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(function(modelName) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+// Object.keys(db).forEach(function(modelName) {
+//   if (db[modelName].associate) {
+//     db[modelName].associate(db);
+//   }
+// });
+// user.belongsTo("recipes");
+// recipes.belongsTo("user");
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

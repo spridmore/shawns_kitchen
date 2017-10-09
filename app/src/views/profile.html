@@ -1,4 +1,98 @@
 <div class="container">
-  <h1>Profile view</h1>
-  <button class="btn btn-info" data-ng-click="logOut()">Log Out</button>
+  <div class="row">
+
+    <div class="col-md-3 ">
+      <section class="panel">
+        <div class="panel-body">
+          <div class="thumb-info mb-md">
+            <div class="thumb-info-title">
+              <h2>Isaac Escobar</h2>
+            </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbJSwZMsj23ZKaJP91O8Ec5pmj4htXlrKhGj5dq_X4jiOZqivIyg" class="rounded img-responsive" alt="John Doe">
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-md-9 ">
+
+      <div class="">
+        <div id="edit" class="tab-pane">
+
+          <form class="form-horizontal" method="get">
+            <h4 class="mb-xlg">Personal Information</h4>
+            <fieldset>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="profileFirstName">First Name</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="profileFirstName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="profileLastName">Last Name</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="profileLastName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="profileAddress">Address</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="profileAddress">
+                </div>
+              </div>
+        </div>
+        </fieldset>
+        <hr class="dotted tall">
+        <h4 class="mb-xlg">About Yourself</h4>
+        <fieldset>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="profileBio">Biographical Info</label>
+            <div class="col-md-8">
+              <textarea class="form-control" rows="3" id="profileBio"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-xs-3 control-label mt-xs pt-none">Public</label>
+            <div class="col-md-8">
+              <div class="checkbox-custom checkbox-default checkbox-inline mt-xs">
+                <input type="checkbox" checked="" id="profilePublic">
+                <label for="profilePublic"></label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <hr class="dotted tall">
+        <h4 class="mb-xlg">Change Password</h4>
+        <fieldset class="mb-xl">
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="profileNewPassword">New Password</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="profileNewPassword">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="profileNewPasswordRepeat">Repeat New Password</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="profileNewPasswordRepeat">
+            </div>
+          </div>
+        </fieldset>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="reset" class="btn btn-default">Reset</button>
+              <button type="logOut" class="btn btn-danger pull-right">Log Out</button>
+            </div>
+          </div>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
 </div>

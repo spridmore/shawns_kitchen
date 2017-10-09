@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Reviews', {
+    return queryInterface.createTable('reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -20,23 +20,23 @@ module.exports = {
       date: {
         type: Sequelize.DATE
       },
-      recipeId: {
-        type: Sequelize.INTEGER
+      recipe_id: {
+        type: Sequelize.INTEGER,
       },
-      userId: {
-        type: Sequelize.INTEGER
+      user_id: {
+        type: Sequelize.INTEGER,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Reviews');
+    return queryInterface.dropTable('reviews');
   }
 };

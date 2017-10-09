@@ -1,7 +1,6 @@
 const ShoppingList = require('../models').ShoppingList;
 const Ingredient = require('../models').Ingredient;
 
-
 //Get a list of all shoppinglists using model.findAll()
 function index(req, res) {
   ShoppingList.findAll({

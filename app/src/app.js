@@ -33,7 +33,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state("app.home", {
       url: "/",
       templateUrl: "../src/views/home.html",
-      controller: "loginController",
+      controller: "homeController",
 			// resolve: { authenticate: authenticate },
       metaTags: {
         title: "",
@@ -44,7 +44,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/profile",
       templateUrl: "../src/views/profile.html",
       controller: "loginController",
-			resolve: { authenticate: authenticate },
+			// resolve: { authenticate: authenticate },
       metaTags: {
         title: "",
         description: ""
