@@ -1,4 +1,4 @@
-const User = require('../models/').User;
+const { User } = require('../models/');
 
 //Get a list of all users using model.findAll()
 function index(req, res) {
@@ -60,9 +60,4 @@ function destroy(req, res) {
   });
 }
 
-module.exports = {
-  index: index,
-  show: show,
-  update: update,
-  destroy: destroy
-}
+module.exports = { index, show, update, destroy }

@@ -1,5 +1,5 @@
-const ShoppingList = require('../models').ShoppingList;
-const Ingredient = require('../models').Ingredient;
+const { ShoppingList } = require('../models');
+const { Ingredient } = require('../models');
 
 //Get a list of all shoppinglists using model.findAll()
 function index(req, res) {
@@ -81,10 +81,4 @@ function destroy(req, res) {
   });
 }
 
-module.exports = {
-  index: index,
-  create: create,
-  show: show,
-  update: update,
-  destroy: destroy
-};
+module.exports = { index, create, show, update, destroy };

@@ -1,4 +1,4 @@
-const Review = require('../models').Review;
+const { Review } = require('../models');
 
 function index(req, res) {
   Review.findAll()
@@ -70,10 +70,4 @@ function destroy(req, res) {
     });
 }
 
-module.exports = {
-  index: index,
-  create: create,
-  show: show,
-  update: update,
-  destroy: destroy
-};
+module.exports = { index, create, show, update, destroy };

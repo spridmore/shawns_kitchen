@@ -1,4 +1,4 @@
-const SearchHistory = require('../models').SearchHistory;
+const { SearchHistory } = require('../models');
 
 function index(req, res) {
   SearchHistory.findAll()
@@ -73,10 +73,4 @@ function destroy(req, res) {
   });
 }
 
-module.exports = {
-  index: index,
-  create: create,
-  show: show,
-  update: update,
-  destroy: destroy
-};
+module.exports = { index, create, show, update, destroy };

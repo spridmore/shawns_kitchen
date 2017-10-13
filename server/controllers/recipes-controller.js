@@ -1,4 +1,4 @@
-const Recipe = require('../models').Recipe;
+const { Recipe } = require('../models');
 
 function index(req, res) {
   Recipe.findAll()
@@ -67,10 +67,4 @@ function destroy(req, res) {
   });
 }
 
-module.exports = {
-  index: index,
-  create: create,
-  show: show,
-  update: update,
-  destroy: destroy
-};
+module.exports = { index, create, show, update, destroy };
