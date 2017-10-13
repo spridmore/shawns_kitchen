@@ -1,42 +1,42 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
-  var user = sequelize.define('user', {
+  var User = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    is_admin: DataTypes.BOOLEAN
+    isAdmin: DataTypes.BOOLEAN
   },
     {
       underscored: true
   });
 
-  user.associate = function (models) {
-    this.belongsToMany(models.user_recipe,
-      { through: 'user_recipe', as: 'recipe'},
+  User.associate = function (models) {
+    this.belongsToMany(models.Recipe,
+      { through: 'UserRecipe', as: 'recipe'},
       { onDelete: "Cascade" })
   };
 
-  user.associate = function (models) {
-    this.hasMany(models.review,
+  User.associate = function (models) {
+    this.hasMany(models.Review,
       { onDelete: "Cascade" })
   };
 
-  user.associate = function (models) {
-    this.hasMany(models.shopping_list,
+  User.associate = function (models) {
+    this.hasMany(models.ShoppingList,
       { onDelete: "Cascade" })
   };
 
-  user.associate = function (models) {
-    this.hasMany(models.search_history,
+  User.associate = function (models) {
+    this.hasMany(models.SearchHistory,
       { onDelete: "Cascade" })
   };
 
-  return user;
+  return User;
 };

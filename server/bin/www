@@ -8,6 +8,7 @@ var http = require('http');
 // Get port from environment and store in Express.
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+console.log(`The Magic is happening over on PORT: ${process.env.PORT || '3000'}`);
 
 // Create HTTP server.
 var server = http.createServer(app);

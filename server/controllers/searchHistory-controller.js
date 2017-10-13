@@ -1,13 +1,15 @@
 const SearchHistory = require('../models').SearchHistory;
 
 function index(req, res) {
-  SearchHistory.all()
-    .then(function(searchhistory) {
-      res.status(200).send(searchhistory);
-    })
-    .catch(function(error) {
-      res.status(400).send(error);
-    });
+  SearchHistory.findAll()
+  .then(function(searchHistory) {
+    console.log(searchHistory);
+    res.status(200).send(searchHistory);
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.status(400).send(error);
+  });
 }
 
 function create(req, res) {
@@ -17,22 +19,26 @@ function create(req, res) {
     url: req.body.url,
     userId: req.body.userId,
   })
-    .then(function(searchhistory) {
-      res.status(200).send(searchhistory);
-    })
-    .catch(function(error) {
-      res.status(400).send(error);
-    })
+  .then(function(searchHistory) {
+    console.log(searchHistory);
+    res.status(200).send(searchHistory);
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.status(400).send(error);
+  })
 }
 
 function show(req, res) {
   SearchHistory.findById(req.params.id)
-    .then(function (searchhistory) {
-      res.status(200).json(searchhistory);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (searchhistory) {
+    console.log(searchHistory);
+    res.status(200).json(searchhistory);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 function update(req, res) {
@@ -41,12 +47,14 @@ function update(req, res) {
       id: req.params.id
     }
   })
-    .then(function (updatedRecords) {
-      res.status(200).json(updatedRecords);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (searchHistory) {
+    console.log(searchHistory);
+    res.status(200).json(searchHistory);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 function destroy(req, res) {
@@ -55,12 +63,14 @@ function destroy(req, res) {
       id: req.params.id
     }
   })
-    .then(function (deletedRecords) {
-      res.status(200).json(deletedRecords);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (searchHistory) {
+    console.log(searchHistory);
+    res.status(200).json(searchHistory);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 module.exports = {
