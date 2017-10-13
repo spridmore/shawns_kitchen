@@ -17,18 +17,23 @@ header {
 }
 
 .foodNav {
-  position: inherit;
+  position: fixed;
   height: 120px;
   width: 100%;
   background-color:#D0CED6;
   padding: 25px;
   padding-top: 35px;
+  color:black;
   margin-bottom: 0;
   z-index:10;
 }
 
 .navContainer {
 
+}
+
+.container {
+  padding-top:30px;
 }
 
 .navLink  {
