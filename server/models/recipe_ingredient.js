@@ -1,19 +1,19 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
-    var recipe_ingredient = sequelize.define('recipe_ingredient', {
+    var RecipeIngredient = sequelize.define('RecipeIngredient', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             autoIncrement: true,
             primaryKey: true
         },
-        recipe_id: DataTypes.INTEGER,
-        ingredient_id: DataTypes.INTEGER,
+        recipeId: DataTypes.INTEGER,
+        ingredientId: DataTypes.INTEGER,
         quantity: DataTypes.INTEGER,
         measurement: DataTypes.TEXT,
         measurementShort: DataTypes.TEXT,
         measurementLong: DataTypes.TEXT,
     });
 
-    return recipe_ingredient;
+    return RecipeIngredient;
 };

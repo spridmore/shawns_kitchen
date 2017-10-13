@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
-  var shopping_list = sequelize.define('shopping_list', {
+  var ShoppingList = sequelize.define('ShoppingList', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -11,15 +11,16 @@ module.exports = function (sequelize, DataTypes) {
     userId: DataTypes.INTEGER
   });
 
-  shopping_list.associate = function (models) {
-    shopping_list.belongsToMany(models.user,
+  ShoppingList.associate = function (models) {
+    ShoppingList.belongsTo(models.User,
       { onDelete: 'cascade' });
   };
-  shopping_list.associate = function (models) {
-    shopping_list.belongsToMany(models.recipe,
-      { through: 'recipe_shopping_list' },
+
+  ShoppingList.associate = function (models) {
+    ShoppingList.belongsToMany(models.Recipe,
+      { through: 'RecipeShoppingList', foreignKey: 'shoppingListId' },
       { onDelete: 'Cascade' })
   };
 
-  return shopping_list;
+  return ShoppingList;
 };

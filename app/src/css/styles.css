@@ -9,11 +9,13 @@ body {
   font-weight: 400;
   font-family: 'Open Sans', sans-serif;
 }
+
 header {
   background: url("../../../src/images/berries.jpg")center center no-repeat;
   background-size: cover;
   height: 700px;
 }
+
 .foodNav {
   position: fixed;
   height: 120px;
@@ -25,27 +27,30 @@ header {
   margin-bottom: 0;
   z-index:10;
 }
+
 .navContainer {
 
 }
+
 .container {
   padding-top:30px;
 }
+
 .navLink  {
   display: inline;
   padding: 0 5px;
   font-size: 35px;
   font-weight: 200;
   cursor: pointer;
-
 }
 
 #logoLink {
-font-size: 60px;
-font-weight: 400;
+  font-size: 60px;
+  font-weight: 400;
 }
 
- #navLogin {
+#navLogin {
+
 }
 
 footer {
@@ -55,45 +60,50 @@ footer {
   background-color: #D0CED6;
   clear:both;
   color:black;
-
 }
 
 .footerItem {
   list-style-type: none;
-  }
+}
 
 a {
   color: black;
-  }
+}
+
 .hero {
   font-size: 80px;
   color: black;
   text-align: center;
   margin-top: 230px;
 }
+
 .heroHome {
   font-size: 100px;
   color: white;
   text-align: center;
   margin-top: 230px;
 }
+
 .recipesContainer {
   background: url("");
   background-image: 100%;
   padding:10px;
- }
- .recipeHeading {
-font-size:30px;
-padding: 10px;
-padding-top:20px;
- }
- .recipeImage {
+}
 
- }
- .recipeServe {
+.recipeHeading {
+  font-size:30px;
+  padding: 10px;
+  padding-top:20px;
+}
 
- }
- .recipeInstruct {
+.recipeImage {
 
- }
- 
+}
+
+.recipeServe {
+
+}
+
+.recipeInstruct {
+
+}

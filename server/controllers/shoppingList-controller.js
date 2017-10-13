@@ -1,18 +1,19 @@
-const ShoppingList = require('../models').ShoppingList;
-const Ingredient = require('../models').Ingredient;
-
+const { ShoppingList } = require('../models');
+const { Ingredient } = require('../models');
 
 //Get a list of all shoppinglists using model.findAll()
 function index(req, res) {
   ShoppingList.findAll({
     include: Ingredient
   })
-    .then(function (shoppinglists) {
-      res.status(200).json(shoppinglists);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (shoppingList) {
+    console.log(shoppingList);
+    res.status(200).json(shoppingList);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 //Create a new ShoppingList using model.create()
@@ -20,11 +21,13 @@ function create(req, res) {
   ShoppingList.create({
     listName: req.body.listName,
     userId: req.body.userId,
-})
-  .then(function (newShoppingList) {
-    res.status(200).json(newShoppingList);
+  })
+  .then(function (shoppingList) {
+    console.log(shoppingList);
+    res.status(200).json(shoppingList);
   })
   .catch(function (error){
+    console.log(error);
     res.status(500).json(error);
   });
 }
@@ -34,10 +37,12 @@ function show(req, res) {
   ShoppingList.findById(req.params.id, {
     include: Ingredient
   })
-  .then(function (shoppinglists) {
-    res.status(200).json(shoppinglists);
+  .then(function (shoppingList) {
+    console.log(shoppingList);
+    res.status(200).json(shoppingList);
   })
   .catch(function (error){
+    console.log(error);
     res.status(500).json(error);
   });
 }
@@ -49,10 +54,12 @@ function update(req, res) {
       id: req.params.id
     }
   })
-  .then(function (updatedRecords) {
-    res.status(200).json(updatedRecords);
+  .then(function (shoppingList) {
+    console.log(shoppingList);
+    res.status(200).json(shoppingList);
   })
   .catch(function (error){
+    console.log(error);
     res.status(500).json(error);
   });
 }
@@ -63,19 +70,15 @@ function destroy(req, res) {
     where: {
       id: req.params.id
     }
-})
-  .then(function (deletedRecords) {
-    res.status(200).json(deletedRecords);
+  })
+  .then(function (shoppingList) {
+    console.log(shoppingList);
+    res.status(200).json(shoppingList);
   })
   .catch(function (error){
+    console.log(error);
     res.status(500).json(error);
   });
 }
 
-module.exports = {
-  index: index,
-  create: create,
-  show: show,
-  update: update,
-  destroy: destroy
-};
+module.exports = { index, create, show, update, destroy };

@@ -1,6 +1,6 @@
-var User = require('../models/').User
-var bcrypt = require('bcryptjs')
-var jwt = require('jsonwebtoken')
+var { User }  = require('../models/');
+var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 
 function login (req, res) {
 	// 1. Validate email and password
@@ -140,9 +140,4 @@ function verifyAdmin(req, res, next) {
 	});
 }
 
-module.exports = {
-	login: login,
-	register: register,
-	verify: verify,
-	verifyAdmin: verifyAdmin
-}
+module.exports = { login, register, verify, verifyAdmin }

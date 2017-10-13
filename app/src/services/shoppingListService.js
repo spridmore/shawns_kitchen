@@ -1,5 +1,3 @@
-angular
-  .module("myApp")
-  .service("shoppingListService", function($http) {
+app.service("shoppingListService", function($http) {
 
-  })
+})

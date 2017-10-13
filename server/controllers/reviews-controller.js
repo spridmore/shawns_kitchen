@@ -1,73 +1,73 @@
-const Reviews = require('../models').review;
+const { Review } = require('../models');
 
 function index(req, res) {
-  Reviews.all()
-    .then(function(reviews) {
-      res.status(200).send(reviews);
-    })
-    .catch(function(error) {
-      res.status(400).send(error);
-    });
+  Review.findAll()
+  .then(function(reviews) {
+    console.log(reviews);
+    res.status(200).send(reviews);
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.status(400).send(error);
+  });
 }
 
 function create(req, res) {
-  Reviews.create({
+  Review.create({
     title: req.body.title,
     description: req.body.description,
     rating: req.body.rating,
     recipeId: req.body.recipeId,
     userId: req.body.userId,
   })
-    .then(function(reviews) {
-      res.status(200).send(reviews);
+    .then(function(review) {
+      console.log(review);
+      res.status(200).send(review);
     })
     .catch(function(error) {
+      console.log(error);
       res.status(400).send(error);
     });
 }
 
 function show(req, res) {
-  Reviews.findById(req.params.id)
-    .then(function (review) {
-      res.status(200).json(review);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  Review.findById(req.params.id)
+  .then(function (review) {
+    console.log(review);
+    res.status(200).json(review);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 function update(req, res) {
-  Reviews.update(req.body, {
+  Review.update(req.body, {
     where: {
       id: req.params.id
     }
   })
-    .then(function (updatedRecords) {
-      res.status(200).json(updatedRecords);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (updatedRecord) {
+    res.status(200).json(updatedRecord);
+  })
+  .catch(function (error) {
+    res.status(500).json(error);
+  });
 }
 
 function destroy(req, res) {
-  Reviews.destroy({
+  Review.destroy({
     where: {
       id: req.params.id
     }
   })
-    .then(function (deletedRecords) {
-      res.status(200).json(deletedRecords);
+    .then(function (deletedRecord) {
+      res.status(200).json(deletedRecord);
     })
     .catch(function (error) {
       res.status(500).json(error);
     });
 }
 
-module.exports = {
-  index: index,
-  create: create,
-  show: show,
-  update: update,
-  destroy: destroy
-};
+module.exports = { index, create, show, update, destroy };

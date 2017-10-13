@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
-  var user_recipe = sequelize.define('user_recipe', {
+  var UserRecipe = sequelize.define('UserRecipe', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -10,6 +10,6 @@ module.exports = function (sequelize, DataTypes) {
     recipeId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
   });
-  
-  return user_recipe;
+
+  return UserRecipe;
 };

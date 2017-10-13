@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
-  var ingredient = sequelize.define('ingredient', {
+  var Ingredient = sequelize.define('Ingredient', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -11,11 +11,11 @@ module.exports = function (sequelize, DataTypes) {
     quantity: DataTypes.INTEGER,
   });
 
-  ingredient.associate = function (models) {
-    this.belongsTo(models.recipe, 
-      { through: 'recipe_ingredient', foreignKey:'ingredient_id' }),
+  Ingredient.associate = function (models) {
+    this.belongsTo(models.recipe,
+      { through: 'RecipeIngredient', foreignKey: 'ingredientId' }),
       { onDelete: 'Cascade'}
   };
 
-  return ingredient;
+  return Ingredient;
 };

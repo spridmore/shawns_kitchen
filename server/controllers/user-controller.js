@@ -1,25 +1,27 @@
-var model = require('../models/');
+const { User } = require('../models/');
 
 //Get a list of all users using model.findAll()
 function index(req, res) {
-  model.user.findAll()
-    .then(function (users) {
-      console.log(users);
-      res.status(200).json(users);
-    })
-    .catch(function (error) {
-      console.log(error);
-      res.status(500).json(error);
-    });
+  User.findAll()
+  .then(function (user) {
+    console.log(user);
+    res.status(200).json(user);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 //Get an user by the unique ID using model.findById()
 function show(req, res) {
   User.findById(req.params.id)
   .then(function (user) {
+    console.log(user);
     res.status(200).json(user);
   })
   .catch(function (error){
+    console.log(error);
     res.status(500).json(error);
   });
 }
@@ -31,10 +33,12 @@ function update(req, res) {
       id: req.params.id
     }
   })
-  .then(function (updatedRecords) {
-    res.status(200).json(updatedRecords);
+  .then(function (user) {
+    console.log(user);
+    res.status(200).json(user);
   })
   .catch(function (error){
+    console.log(error);
     res.status(500).json(error);
   });
 }
@@ -46,17 +50,14 @@ function destroy(req, res) {
       id: req.params.id
     }
   })
-  .then(function (deletedRecords) {
-    res.status(200).json(deletedRecords);
+  .then(function (user) {
+    console.log(user);
+    res.status(200).json(user);
   })
-  .catch(function (error){
+  .catch(function (error) {
+    console.log(error);
     res.status(500).json(error);
   });
 }
 
-module.exports = {
-  index: index,
-  show: show,
-  update: update,
-  destroy: destroy
-}
+module.exports = { index, show, update, destroy }

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var review = sequelize.define('review', {
+  var Review = sequelize.define('Review', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -11,20 +11,21 @@ module.exports = function(sequelize, DataTypes) {
     description: DataTypes.STRING,
     rating: DataTypes.INTEGER,
     date: DataTypes.DATE,
-    recipe_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER
+    recipeId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   });
 
-  review.associate = function (models) {
-    this.belongsToMany(models.user, { 
+  Review.associate = function (models) {
+    this.belongsToMany(models.User, {
       onDelete: "Cascade"
     });
   };
 
-  review.associate = function (models) {
-    this.belongsToMany(models.recipe, { 
+  Review.associate = function (models) {
+    this.belongsToMany(models.Recipe, {
       onDelete: "Cascade"
     });
   };
-  return review;
+
+  return Review;
 };

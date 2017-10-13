@@ -1,13 +1,15 @@
-const Ingredient = require('../models').Ingredient;
+const { Ingredient } = require('../models');
 
 function index(req, res) {
-  Ingredient.all()
-    .then(function(ingredients) {
-      res.status(200).send(ingredients);
-    })
-    .catch(function(error) {
-      res.status(400).send(error);
-    })
+  Ingredient.findAll()
+  .then(function(ingredients) {
+    console.log(ingredients);
+    res.status(200).send(ingredients);
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.status(400).send(error);
+  })
 }
 
 function create(req, res) {
@@ -15,22 +17,26 @@ function create(req, res) {
     name: req.body.name,
     quantity: req.params.quantity,
   })
-    .then(function(ingredients) {
-      res.status(200).send(ingredients);
-    })
-    .catch(function(error) {
-      res.status(400).send(error);
-    })
+  .then(function(ingredient) {
+    console.log(ingredient);
+    res.status(200).send(ingredient);
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.status(400).send(error);
+  })
 }
 
 function show(req, res) {
   Ingredient.findById(req.params.id)
-    .then(function (ingredients) {
-      res.status(200).json(ingredients);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (ingredient) {
+    console.log(ingredient);
+    res.status(200).json(ingredient);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 function update(req, res) {
@@ -39,12 +45,14 @@ function update(req, res) {
       id: req.params.id
     }
   })
-    .then(function (updatedRecords) {
-      res.status(200).json(updatedRecords);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (ingredient) {
+    console.log(ingredient);
+    res.status(200).json(ingredient);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
 function destroy(req, res) {
@@ -53,18 +61,14 @@ function destroy(req, res) {
       id: req.params.id
     }
   })
-    .then(function (deletedRecords) {
-      res.status(200).json(deletedRecords);
-    })
-    .catch(function (error) {
-      res.status(500).json(error);
-    });
+  .then(function (ingredient) {
+    console.log(ingredient);
+    res.status(200).json(ingredient);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.status(500).json(error);
+  });
 }
 
-module.exports = {
-  index: index,
-  create: create,
-  show: show,
-  update: update,
-  destroy: destroy
-};
+module.exports = { index, create, show, update, destroy };

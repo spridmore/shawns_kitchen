@@ -27,7 +27,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
-console.log("dirname: ", __dirname);
 function debugReq(req, res, next) {
   debug('params:', req.params);
   debug('query:', req.query);
@@ -45,7 +44,7 @@ app.use('/recipes', recipes);
 models.sequelize
   .authenticate()
   .then(function () {
-    console.log('Connection successful');
+    console.log('DB Connection successful');
   })
   .catch(function(error) {
     console.log("Error creating connection:", error);
