@@ -1,6 +1,6 @@
 const model = require('../models');
 
-var recipe_list = model.recipe.findAll()
+// var recipe_list = model.recipe.findAll()
 
 function index(req, res) {
   model.recipe.findAll()

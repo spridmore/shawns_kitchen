@@ -100,6 +100,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
         description: ""
       }
     })
+    .state("app.about", {
+      url: "/about",
+      templateUrl: "../src/views/about.html",
+      controller: "aboutController",
+			// resolve: { authenticate: authenticate },
+      metaTags: {
+        title: "",
+        description: ""
+      }
+    })
 })
 
 // Configure every outgoing request with new headers found in authInterceptorService

@@ -51,5 +51,4 @@ models.sequelize
     console.log("Error creating connection:", error);
   });
 
-
 module.exports = app;
