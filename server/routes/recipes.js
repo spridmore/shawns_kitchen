@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const recipes =  require("../controllers/recipes-controller.js")
+const recipes =  require("../controllers/recipe-controller.js")
 
 router.get('/', recipes.index);
 router.post('/', recipes.create);

@@ -3,7 +3,7 @@ angular
   .module("myApp")
   .service('authService', function ($http, localStorageService) {
     //.factory('authService', ['$http', '$q', '$state', 'localStorageService', function ($http, $q, $state, localStorageService) {
-
+ 
     var serviceBase = "http://localhost:3000/"
     var authServiceFactory = {};
     var users = [];
@@ -32,15 +32,17 @@ angular
     var _register = function (registerData) {
       if (registerData.password === registerData.confirmPassword) {
         $http.post('http://localhost:3000/users/register', registerData)
+        //make sure to figure out what process.env.JWT_SECRET points to
           .then(function (registerData) {
+            console.log("inside _register .then");
             console.log("Register Response: ", registerData);
-            // localStorageService.set('authorizationData',
-            // {
-            //   user_id: response.data.id,
-            //   token: response.data.token,
-            // });
+            localStorageService.set('authorizationData',
+            {
+              user_id: registerData.data.id,
+              token: registerData.data.token,
+            });
 
-            // $state.go("app.profile")
+            //$state.go("app.profile")
           },
           function (error) {
             console.log(error.data.error);

@@ -1,20 +1,20 @@
-const model = require('../models');
-
-var recipe_list = model.recipe.findAll();
+const model = require('../models/');
 
 function index(req, res) {
+  console.log("inside recipe index")
   model.recipe.findAll()
-  .then(function (recipe) {
-    console.log(recipe);
-    res.status(200).json(recipe);
-  })
-  .catch(function (error) {
-    console.log(error);
-    res.status(500).json(error);
-  });
-};
+    .then(function (users) {
+      console.log(users);
+      res.status(200).json(users);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.status(500).json(error);
+    });
+}
 
 function create(req, res) {
+  console.log("inside recipe create funct ")
   return model.recipe
     .create({
       name: req.body.name,
@@ -28,7 +28,7 @@ function create(req, res) {
 };
 
 function show(req, res) {
-  models.recipe.findById(req.params.id)
+  model.recipe.findById(req.params.id)
     .then(function (recipe_list) {
       res.status(200).json(recipe_list);
     })

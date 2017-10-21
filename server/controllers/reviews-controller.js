@@ -1,12 +1,14 @@
-const Reviews = require('../models').review;
+var model = require('../models/');
 
 function index(req, res) {
-  Reviews.all()
-    .then(function(reviews) {
-      res.status(200).send(reviews);
+  model.recipe.findAll()
+    .then(function (recipes) {
+      console.log(recipes);
+      res.status(200).json(recipes);
     })
-    .catch(function(error) {
-      res.status(400).send(error);
+    .catch(function (error) {
+      console.log(error);
+      res.status(500).json(error);
     });
 }
 

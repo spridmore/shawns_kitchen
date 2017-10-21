@@ -1,13 +1,48 @@
 var model = require('../models/')
 var bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken')
+var db = require('../models/index')
+// model.review.findAll().then(function(reviews){
+// 	console.log(reviews)
+// });
 
+// var login = function(req, res) {
+// 	db.user.findAll({
+// 	// where: {
+// 	// 	email: "shawnsEmail@yahoo.com"
+// 	// },
+// 	include: {
+// 		model : db.review,
+// 	},
+// }).then(function(users) {
+// 	const resObj = users.map(user => {
+// 	  return Object.assign(
+// 		{},
+// 		{
+// 		  user_id: user.id,
+// 		  first_name: user.first_name,
+// 		  //user_review: user.reviews[1].dataValues,
+// 		  reviews:user.reviews.map(review => { 
+// 			 return Object.assign(
+// 				  {},
+// 				  {
+// 					review_id: review.id,
+// 					review_title: review.title,
+// 					review_description: review.description
+// 				  }
+// 			  )
+// 		  })
+// 		  })
+// 		}		
+// 	  )
+// 	  res.json(resObj)
+// 	  console.log(resObj)
+//   });
+// }
 function login (req, res) {
 	// 1. Validate email and password
 	var email = req.body.email
 	var password = req.body.password
-	console.log("email: ", email);
-	console.log("password: ", password);
 
 	if (!email || !password) {
 		res.status(400).json({ error: "Email and password must be set" })
@@ -17,23 +52,54 @@ function login (req, res) {
 		model.user.findAll({
 			where: {
 				email: email
-			}
+			},
 		})
 			.then(function (userArr) {
 				// 3. Should return with a valid user
 				if (!userArr.length > 0) {
 					res.status(404).json({ error: "This user does not exist" })
 				}
-				else {
+				else {					
 					// 3. Compare password
 					var user = userArr[0].dataValues
+					model.user.findAll({
+						include: {
+							model : model.review,
+						},
+					}).then(function(users) {
+						const resObj = users.map(user => {
+						  //clean up the user data
+						  return Object.assign(
+							{},
+							{
+							  user_id: user.id,
+							  first_name: user.first_name,
+							  reviews: user.reviews.map(review => {
+								  return Object.assign(
+								  {},
+								  {
+									review_title: review.title,
+									review_description: review.description
+								  });
+							  })
+							}
+						  )
+						  console.log(resObj)
+						//res.json(resObj)
+					  });
+					
+					
+
 					bcrypt.compare(password, user.password, function(error, result) {
 							if (error) {
 								res.status(401).json({error: error})
+								console.log("this error")
 							}
 
 							if (!result) {
 								res.status(401).json({ error: "Invalid password"})
+								console.log("that error")
+								
 							}
 							else {
 								console.log("1.auth-controller logged in")
@@ -42,13 +108,12 @@ function login (req, res) {
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now() }, process.env.JWT_SECRET);
 								user.token = token
 								res.json(user)
-								console.log("auth-controller logged in")
 							}
 					});
 				}
 			})
 			.catch(function (error) {
-				res.status(500).json({error: error});
+				res.status(100).json({error: error});
 			});
 	}
 }
@@ -87,8 +152,8 @@ function register (req, res) {
 						// 4. Creating the new user
 						model.user.create(req.body)
 							.then(function (user) {
-								console.log("inside create_____")
-								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now()}, process.env.JWT_SECRET);
+								console.log("inside create")
+								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now()}, "shawns secret");
 								res.json({error: error})
 								console.log("Register Token: ", token);
 
