@@ -20,16 +20,5 @@ module.exports = function (sequelize, DataTypes) {
       underscored: true
     });;
 
-  // review.associate = function (models) {
-  //   this.belongsToMany(models.user, { 
-  //     onDelete: "Cascade"
-  //   });
-  // };
-
-  // review.associate = function (models) {
-  //   this.belongsToMany(models.recipe, { 
-  //     onDelete: "Cascade"
-  //   });
-  // };
   return review;
 };

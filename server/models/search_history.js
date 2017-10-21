@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var search_history = sequelize.define('search_history', {
+  const searchHistory = sequelize.define('searchHistory', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -12,11 +12,5 @@ module.exports = function(sequelize, DataTypes) {
     userId: DataTypes.INTEGER
   });
 
-  search_history.associate = function(models) {
-    this.belongsToMany(models.user, {
-      onDelete: 'Cascade'
-    });
-  };
-
-  return search_history;
+  return searchHistory;
 };

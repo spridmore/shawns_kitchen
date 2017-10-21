@@ -17,25 +17,6 @@ module.exports = function (sequelize, DataTypes) {
     {
       underscored: true
   });
-  
-  //user.hasMany('')
-  // user.associate = function (models) {
-  //   this.belongsToMany(models.user_recipe, 
-  //     { through: 'user_recipe', as: 'recipe'},
-  //     { onDelete: "Cascade" })
-  // };
-  // user.associate = function (models) {
-  //   this.hasMany(models.review, 
-  //     { onDelete: "Cascade" })
-  // };
-  // user.associate = function (models) {
-  //   this.hasMany(models.shopping_list,
-  //     { onDelete: "Cascade" })
-  // };
-  // user.associate = function (models) {
-  //   this.hasMany(models.search_history,
-  //     { onDelete: "Cascade" })
-  // };
 
   return user;
 };

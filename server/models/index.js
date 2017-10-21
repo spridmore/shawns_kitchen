@@ -6,8 +6,6 @@ var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + './../../config/config.js')[env];
 var db        = {};
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
 db.user     = require('./user');
 db.review   = require('./review');
 db.recipe   = require('./recipe');
@@ -52,12 +50,16 @@ db.searchHistory.belongsTo(db.user);
 db.user.hasMany(db.shoppingList);
 db.shoppingList.belongsTo(db.user);
 
-db.recipes.hasMany(db.reviews);
-db.reviews.belongsTo(db.recipes);
+db.recipe.hasMany(db.review);
+db.review.belongsTo(db.recipe);
 
 db.user_recipe.hasMany(db.user);
-db.user_recipe.hasMany(db.recipe)
+db.user_recipe.hasMany(db.recipe);
+
 db.user.belongsTo(db.user_recipe);
 db.recipe.belongsTo(db.user_recipe);
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 module.exports = db;

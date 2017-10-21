@@ -39,7 +39,7 @@ var db = require('../models/index')
 // 	  console.log(resObj)
 //   });
 // }
-function login (req, res) {
+function login(req, res) {
 	// 1. Validate email and password
 	var email = req.body.email
 	var password = req.body.password
@@ -59,90 +59,85 @@ function login (req, res) {
 				if (!userArr.length > 0) {
 					res.status(404).json({ error: "This user does not exist" })
 				}
-				else {					
+				else {
 					// 3. Compare password
 					var user = userArr[0].dataValues
 					model.user.findAll({
 						include: {
-							model : model.review,
+							model: model.review,
 						},
-					}).then(function(users) {
+					}).then(function (users) {
 						const resObj = users.map(user => {
-						  //clean up the user data
-						  return Object.assign(
-							{},
-							{
-							  user_id: user.id,
-							  first_name: user.first_name,
-							  reviews: user.reviews.map(review => {
-								  return Object.assign(
-								  {},
-								  {
-									review_title: review.title,
-									review_description: review.description
-								  });
-							  })
-							}
-						  )
-						  console.log(resObj)
-						//res.json(resObj)
-					  });
-					
-					
-
-					bcrypt.compare(password, user.password, function(error, result) {
+							//clean up the user data
+							return Object.assign(
+								{},
+								{
+									user_id: user.id,
+									first_name: user.first_name,
+									reviews: user.reviews.map(review => {
+										return Object.assign(
+											{},
+											{
+												review_title: review.title,
+												review_description: review.description
+											});
+									})
+								}
+							)
+							console.log(resObj)
+							//res.json(resObj)
+						});
+						bcrypt.compare(password, user.password, function (error, result) {
 							if (error) {
-								res.status(401).json({error: error})
+								res.status(401).json({ error: error })
 								console.log("this error")
 							}
 
 							if (!result) {
-								res.status(401).json({ error: "Invalid password"})
+								res.status(401).json({ error: "Invalid password" })
 								console.log("that error")
-								
 							}
 							else {
-								console.log("1.auth-controller logged in")
-								
 								// 4. Return a token
 								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now() }, process.env.JWT_SECRET);
 								user.token = token
 								res.json(user)
-							}
+							};
+						});
 					});
-				}
+				};
 			})
 			.catch(function (error) {
-				res.status(100).json({error: error});
+				res.status(100).json({ error: error });
 			});
 	}
 }
 
-function register (req, res) {
+function register(req, res) {
 	if (!req.body.email || !req.body.password) {
 		res.json({ error: "Email and password must be set" })
 	}
 
 	// 2. Verify user has not already registered
 	model.user.findAll({
-	  where: {
-	    email: req.body.email
-	  }
+		where: {
+			email: req.body.email
+		}
 	})
 		.then(function (user) {
 			// 3. Should return null
-			if(user.length > 0) {
+			if (user.length > 0) {
 				res.json({ error: "A user account with this email already exists" })
 			}
 			else {
-				bcrypt.genSalt(10, function(error, salt) {
+				bcrypt.genSalt(10, function (error, salt) {
 					if (error) {
-						res.json({error: error})
+						res.json({ error: error })
 					};
 
-					bcrypt.hash(req.body.password, salt, function(error, hash) {
+					bcrypt.hash(req.body.password, salt, function (error, hash) {
 						if (error) {
-							res.json({error: error})
+							res.json({ error: error })
 						}
 
 						req.body.password = hash;
@@ -153,8 +148,8 @@ function register (req, res) {
 						model.user.create(req.body)
 							.then(function (user) {
 								console.log("inside create")
-								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now()}, "shawns secret");
-								res.json({error: error})
+								var token = jwt.sign({ id: user.id, isAdmin: user.is_admin, iat: Date.now() }, "shawns secret");
+								res.json({ error: error })
 								console.log("Register Token: ", token);
 
 								user.dataValues.token = token;
@@ -163,7 +158,7 @@ function register (req, res) {
 							})
 							.catch(function (error) {
 								console.log("inside create error")
-								res.status(500).json({error: error});
+								res.status(500).json({ error: error });
 							});
 					})
 				})
@@ -171,15 +166,15 @@ function register (req, res) {
 
 		})
 		.catch(function (error) {
-			res.status(500).json({error: error});
+			res.status(500).json({ error: error });
 		});
 }
 
 function verify(req, res, next) {
-  var token =  req.header('Authorization')
+	var token = req.header('Authorization')
 	jwt.verify(token, process.env.JWT_SECRET, function (error, decoded) {
 		if (error) {
-			res.json({error: error})
+			res.json({ error: error })
 		}
 		else {
 			req.token = decoded
@@ -189,10 +184,10 @@ function verify(req, res, next) {
 }
 
 function verifyAdmin(req, res, next) {
-  var token = req.header('Authorization')
+	var token = req.header('Authorization')
 	jwt.verify(token, process.env.JWT_SECRET, function (error, decoded) {
 		if (error) {
-			res.json({error: error})
+			res.json({ error: error })
 		}
 		else if (!decoded.isAdmin) {
 			res.json({ error: "Not an admin" })
